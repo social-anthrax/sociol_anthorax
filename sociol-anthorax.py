@@ -3,9 +3,8 @@ import discord.ext.commands
 import reddit_trawler
 import dice_thrower
 
-file = open("../tokens/discordBot.txt").read()
+file = open("../tokens/discordBot.txt").read().splitlines()
 
-TOKEN = file
 BOT_PREFIX = ("'''")
 client = discord.ext.commands.Bot(command_prefix=BOT_PREFIX)
 
@@ -53,7 +52,6 @@ async def on_message(context):
                 pass_context=True)  # prepares the name ,description, purpose and aliases for a program
 async def dice(module, *args):
 
-    print("proccessing")
     msg = dice_thrower.dice(' '.join(args))
     await client.say(msg)
 
@@ -96,4 +94,4 @@ async def on_ready():
     await client.change_presence(game=discord.Game(name='with suicidal depression'))
 
 
-client.run(TOKEN)
+client.run(file[0])

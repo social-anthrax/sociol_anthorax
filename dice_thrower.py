@@ -18,8 +18,7 @@ def dice(*args):
         number = int("".join(char[:type]))
         dice = "".join(char[type + 1:])
         if int(number) >= 300:
-            print("no")
-            return None
+            return 'No.'
 
         totalDice = totalDice + "("
         totalDice = totalDice + "d" + dice + ": "
