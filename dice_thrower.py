@@ -1,5 +1,6 @@
 import random
 
+
 def dice(*args):
     term = "".join(args)
     rolls = []
@@ -15,19 +16,19 @@ def dice(*args):
 
         char = list(dice)
         number = int("".join(char[:type]))
-        dice = "".join(char[type+1:])
+        dice = "".join(char[type + 1:])
         if int(number) >= 300:
             print("no")
-            1/0 #exits module but not program by forcing an error. Probably a better way to this but i currently don't how to do this.
+            return None
 
         totalDice = totalDice + "("
         totalDice = totalDice + "d" + dice + ": "
 
         rolls = []
-        for i in range(0,number):
-            rolls.append(str(random.randint(1,int(dice))))
+        for i in range(0, number):
+            rolls.append(str(random.randint(1, int(dice))))
         for x in rolls:
-            totalDice = totalDice + "{"+x+"} "
+            totalDice = totalDice + "{" + x + "} "
             total = total + int(x)
         totalDice = totalDice + ")"
 

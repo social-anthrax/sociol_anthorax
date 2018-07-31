@@ -34,6 +34,3 @@ def reddit(sub, term):
         text = text + lines + " \n "
 
     return(text)
-
-
-print(reddit('copypasta', 'original navy'))
