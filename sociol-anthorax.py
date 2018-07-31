@@ -5,7 +5,7 @@ import dice_thrower
 
 file = open("../tokens/discordBot.txt").read()
 
-TOKEN = 'NDY5NzgyOTAxNjgxMjkxMjc1.DjMvxg.jvRjoy5MBhmSSAJIq3JGjpHU8Us'
+TOKEN = file
 BOT_PREFIX = ("'''")
 client = discord.ext.commands.Bot(command_prefix=BOT_PREFIX)
 
