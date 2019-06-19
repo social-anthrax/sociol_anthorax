@@ -96,7 +96,18 @@ if DM != True:
 
 if DM:
     # TODO: add dict to read in ID's and save them to usernames
-    # TODO: add infinite loop instead of on message?
+
+    file = open("dm.txt", "r")
+    dmID = {}
+    counter = 0
+    for entries in file.read().splitlines():
+        spliter = entries.split(", ")
+        dmID[spliter[0]] = spliter[1]
+    file.close()
+
+
+
+
     # TODO: add changing of channels by dictionary
     # TODO: add new users to dict by server look up
 
