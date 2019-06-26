@@ -95,18 +95,42 @@ if DM != True:
         await bot.process_commands(message)
 
 if DM:
-    # TODO: add dict to read in ID's and save them to usernames
-
-    file = open("dm.txt", "r")
     dmID = {}
-    counter = 0
-    for entries in file.read().splitlines():
-        spliter = entries.split(", ")
-        dmID[spliter[0]] = spliter[1]
-    file.close()
+    dm_receipient = input("user to dm")
+
+    @bot.event
+    async def on_ready():
+        print('Logged in as')
+        print(bot.user.name)
+        print(bot.user.id)
+        print('------')
+        await bot.change_presence(activity=discord.Game(name='with direct messaging'))
+        await initDM()
+        
+    @bot.command
+    async def initDM(self):
+        # TODO: add dict to read in ID's and save them to usernames
+        file = open("dm.txt", "r")
+        dmID = {}
+            # counter = 0
+        for entries in file.read().splitlines():
+            spliter = entries.split(", ")
+            dmID[spliter[0]] = spliter[1]
+        file.close()
+            
+        if dm_receipient in dmID:
+            message.channel = message.get_channel(dmID[dm_receipient]))
+            await self.channel.send(input("input: "))
+        else:
+            try:
+                message.channel = bot.get_channel(398922283214831618)
+                print(message.guild.get_member_named(dm_receipient))
+            finally:
+                print("failed")
 
 
-
+            
+        
 
     # TODO: add changing of channels by dictionary
     # TODO: add new users to dict by server look up
@@ -114,11 +138,8 @@ if DM:
 
     @bot.event
     async def on_message(message):
-
-
-        # print("[" + message.author.name + "]    " + message.content)
-        # print(message.channel.id)
-        message.channel = bot.get_channel(590286160576643076)
+        os.system('cls')
+        message.channel = bot.get_channel(dmID[dm_receipient])
         async for text in message.channel.history(limit=10):
                 print("[" + text.author.name + "]    " + text.content)
        
@@ -141,14 +162,14 @@ if DM:
 
 
     
-
-@bot.event
-async def on_ready():
-    print('Logged in as')
-    print(bot.user.name)
-    print(bot.user.id)
-    print('------')
-    await bot.change_presence(activity=discord.Game(name='with depression'))
+if not DM:
+    @bot.event
+    async def on_ready():
+        print('Logged in as')
+        print(bot.user.name)
+        print(bot.user.id)
+        print('------')
+        await bot.change_presence(activity=discord.Game(name='with depression'))
 
 
 bot.run(token)
